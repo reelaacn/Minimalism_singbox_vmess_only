@@ -8,7 +8,7 @@ This is a python script that supports creating "single-box for Android" profiles
 
 2. Write the nodes address list to "nodes.txt".
 
-3. Click the right mouse button, select option "open mode python3.1" and then run "__main__.py".
+3. And then run "__main__.py". Click the right mouse button, select option "open mode python3.1".
 
 4. The "tun.json" file is automatically generated at the end of the run, which is the profile for single-box.
 
