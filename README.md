@@ -1,6 +1,6 @@
 # tun_fakeip
 ```
-This is a python script that supports creating "single-box for Android" profiles, you'll love it.
+This is a python script that supports creating "sing-box for Android" profiles, you'll love it.
 ```
 # How to use:
 ```
@@ -10,19 +10,16 @@ This is a python script that supports creating "single-box for Android" profiles
 
 3. And then run "__main__.py". Click the right mouse button, and select option "open with python3.1".
 
-4. The "tun.json" file will auto create at the end, which is the profile for single-box.
+4. The "tun.json" file will auto create at the end, which is the profile for sing-box.
 
 5. Place the "tun.json" file in the local "Windows IIS server" directory (Path: C:\inetpub\wwwroot),
-   so that you have a singbox subscription address.
+   so that you have a sing-box subscription address.
 
    Example: http://192.168.0.4/tun.json
 
-6. The "config.json" is a single-box template profile, do not delete, do not rename.
+6. The "config.json" is a sing-box template profile, do not delete, do not rename.
 
-7. The"__main__.py" file is the main program.
-   it analyzes and extracts the processed node information.
-   and auto writes the nodes information into the profile.
-   finally output the nodes profile at "./ tun.json", do not rename.
+7. The"__main__.py" file is the main program. do not rename.
 
 8. The"nodes.txt" is the nodes link storage file, do not delete, do not rename.
 ```
