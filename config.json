@@ -1,0 +1,124 @@
+{
+    "log": {
+        "disabled": false,
+        "level": "trace",
+        "timestamp": true
+    },
+    "experimental": {
+        "cache_file": {
+            "enabled": true,
+            "store_fakeip": true,
+            "store_rdrc": false
+        }
+    },
+    "inbounds": [
+        {
+            "type": "tun",
+            "address": [
+                "172.18.0.1/30",
+                "fdfe:dcba:9876::1/126"
+            ],
+            "auto_route": true,
+            "sniff": true,
+            "sniff_override_destination": false
+        }
+    ],
+    "outbounds": [
+        {
+            "tag": "auto-connect",
+            "type": "urltest",
+            "outbounds": node_name_list,
+            "url": "http://www.cloudflare.com/cdn-cgi/trace",
+            "interval": "300s",
+            "tolerance": 150,
+            "interrupt_exist_connections": false
+        },
+        {
+            "type": "direct",
+            "tag": "direct"
+        },
+        {
+            "type": "dns",
+            "tag": "dns-out"
+        },
+        {
+            "type": "block",
+            "tag": "block"
+        },
+node_info
+],
+    "route": {
+        "rule_set": [
+            {
+                "tag": "GEOLOCATION-!CN",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://github.com/SagerNet/sing-geosite/raw/rule-set/geosite-geolocation-!cn.srs",
+                "download_detour": "direct"
+            }
+        ],
+        "rules": [
+            {
+                "protocol": "dns",
+                "port": 853,
+                "outbound": "dns-out"
+            },
+            {
+                "network": "udp",
+                "port": 443,
+                "outbound": "direct"
+            },
+            {
+                "ip_is_private": true,
+                "outbound": "direct"
+            },
+            {
+                "rule_set": "GEOLOCATION-!CN",
+                "outbound": "auto-connect"
+            }
+        ],
+        "final": "direct",
+        "auto_detect_interface": true,
+        "override_android_vpn": true
+    },
+    "dns": {
+        "servers": [
+            {
+                "tag": "remote-dns",
+                "address": "tls://8.8.8.8",
+                "detour": "auto-connect"
+            },
+            {
+                "tag": "local-dns",
+                "address": "tls://223.5.5.5",
+                "detour": "direct"
+            },
+            {
+                "tag": "block",
+                "address": "rcode://success"
+            }
+        ],
+        "rules": [
+            {
+                "outbound": "any",
+                "disable_cache": true,
+                "server": "local-dns"
+            },
+            {
+                "query_type": [
+                    "A",
+                    "AAAA"
+                ],
+                "server": "remote-dns"
+            }
+        ],
+        "fakeip": {
+            "enabled": true,
+            "inet4_range": "198.18.0.0/15",
+            "inet6_range": "fc00::/18"
+        },
+        "independent_cache": false,
+        "final": "remote-dns",
+        "strategy": "ipv4_only"
+    }
+}
