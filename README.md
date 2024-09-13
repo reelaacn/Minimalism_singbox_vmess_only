@@ -18,7 +18,8 @@ This is a python script that supports creating "single-box for Android" profiles
 
 6. The"config.json" is a single-box configuration template file, do not delete, do not rename.
 
-7. The"**main**.py" file is the main program, analyzes and extracts the processed node information, then auto writes the processed node information into the configuration template, finally generates the node configuration file "./ tun.json".
+7. The"__main__.py" file is the main program, analyzes and extracts the processed node information,
+   then auto writes the processed node information into the configuration template, finally generates the node configuration file "./ tun.json", do not rename.
 
 8. The"nodes.txt" is the node link storage file, do not delete, do not rename.
 ```
