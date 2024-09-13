@@ -228,7 +228,7 @@ if __name__ == "__main__":
         with open(CURRENT_PATH / "config.json", "r", encoding="utf-8") as f:
             config_content = f.read()
     except FileNotFoundError:
-        print("config.json 文件未找到")
+        print("config.json can not find")
         config_content = ""
     node_name_list_str = json.dumps(node_name_list, ensure_ascii=False, indent=4)
     node_info_str = ",\n".join(json.dumps(item, ensure_ascii=False, indent=4) for item in node_info)
@@ -238,5 +238,5 @@ if __name__ == "__main__":
     with open(CURRENT_PATH / "tun.json", "w", encoding="utf-8") as f:
         f.write(config_content)
     print(
-        f">>>>>>>>> 总共生成{len(node_info)}个节点，当前目录已新增配置文件./tun.json。>>>本次配置为tun模式<<<"
+        f">>>>>>>>> Awesome,create{len(node_info)}nodes，chack current_path ./tun.json。>>>tun_fakeip mode for android sing-box<<<"
     )
