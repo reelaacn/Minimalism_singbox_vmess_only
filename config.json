@@ -25,7 +25,7 @@
     ],
     "outbounds": [
         {
-            "tag": "auto-connect",
+            "tag": "auto",
             "type": "urltest",
             "outbounds": node_name_list,
             "url": "http://www.cloudflare.com/cdn-cgi/trace",
@@ -74,7 +74,7 @@ node_info
             },
             {
                 "rule_set": "GEOLOCATION-!CN",
-                "outbound": "auto-connect"
+                "outbound": "auto"
             }
         ],
         "final": "direct",
@@ -84,13 +84,13 @@ node_info
     "dns": {
         "servers": [
             {
-                "tag": "remote-dns",
-                "address": "tls://8.8.8.8",
-                "detour": "auto-connect"
+                "tag": "remote",
+                "address": "udp://1.1.1.1",
+                "detour": "auto"
             },
             {
-                "tag": "local-dns",
-                "address": "tls://223.5.5.5",
+                "tag": "local",
+                "address": "tls://1.1.1.1",
                 "detour": "direct"
             },
             {
@@ -102,14 +102,14 @@ node_info
             {
                 "outbound": "any",
                 "disable_cache": true,
-                "server": "local-dns"
+                "server": "local"
             },
             {
                 "query_type": [
                     "A",
                     "AAAA"
                 ],
-                "server": "remote-dns"
+                "server": "remote"
             }
         ],
         "fakeip": {
@@ -118,7 +118,6 @@ node_info
             "inet6_range": "fc00::/18"
         },
         "independent_cache": false,
-        "final": "remote-dns",
-        "strategy": "ipv4_only"
-    }
+        "final": "remote"
+        }
 }
